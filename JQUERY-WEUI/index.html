@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
+    <link href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+        .lists li{
+            line-height: 2.5;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- 下拉刷新 -->
+        <div class="weui-pull-to-refresh__layer">
+            <!-- 箭头 -->
+            <div class="weui-pull-to-refresh__arrow"></div>
+            <!-- 菊花图 -->
+            <div class="weui-pull-to-refresh__preloader"></div>
+            <div class="down">下拉刷新</div>
+            <div class="up">释放刷新</div>
+            <div class="refresh">正在刷新</div>
+        </div>
+        <div id="list">
+            <ul class="lists">
+                <li>豆瓣电影Top20</li>
+            </ul>
+        </div>
+        <!-- 加载更多 -->
+        <div class="weui-loadmore">
+            <!-- 菊花图 -->
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载</span>
+        </div>
+    </div>
+    <script>
+        // 自执行
+        (function () {
+            $.ajax({
+                // 接口
+                url: 'https://api.douban.com/v2/movie/top250',
+                type: 'get',
+                // 点击按钮的时候运行代码，获取数据以及返回数据只3s,3s内为完成则报错
+                timeout: '3000',
+                // 请求数据格式
+                dataType: 'jsonp',
+                success: function (response) {
+                    // console.log(response.subjects)
+                    for(let n of response.subjects){
+                        // console.log(n);
+                        // 创建li结点，将li结点放入，再将元素放入li结点中
+                        $('.lists').append(`<li>${n.title}</li>`)
+                    }
+                },
+                error:function(err){
+                    console.log(err)
+                }
+            })
+            $('.page').pullToRefresh(function(){
+                console.log('下拉刷新')
+                // $.ajax({
+                //     url:'',
+                //     type:'get',
+                //     success: function (response) {
+                //     // console.log(response.subjects)
+                //     for(let n of response.subjects){
+                //         // console.log(n);
+                //         // 创建li结点，将li结点放入，再将元素放入li结点中
+                //         $('.lists').append(`<li>${n.title}</li>`)
+                //         }
+                //     }
+                // })
+                setTimeout(() => {
+                    //1.5s之后刷新去除
+                    $('.page').pullToRefreshDone();
+                }, 1500);
+            })
+            // 上拉加载更多
+            $('.page').infinite().on('infinite',function(){
+                var loading=false;
+                if(loading){
+                    return;
+                }
+                $('.weui-loadmore').show();
+                loading=true
+                setTimeout(()=>{
+                    $('.lists').append(`<li>这是一条新数据</li>`)
+                    
+                },1500)
+            })
+        })()
+    </script>
+</body>
+</html>
