@@ -156,4 +156,88 @@ input{
     color: transparent;
     cursor: pointer;
 }
+#anony-reg-new{
+    margin-bottom: 25px;
+    background-size: contain;
+    background-position: cala(50%,-305px) top;
+    background-repeat: no-repeat;
+    background-color: #edf4ed;
+}
+#anony-reg-new .wrapper{
+    position: relative;
+    padding: 0 0 4px;
+    overflow: visible;
+    zoom:1;
+}
+.wrapper{
+    width: 950px;
+    margin: 0 auto;
+}
+#anony-reg-new .wrapper .login{
+    position: relative;
+}
+#anony-reg-new .wrapper .login,#anony-reg-new .wrapper .app{
+    z-index: 2;
+}
+#anony-reg-new .login{
+    width: 300px;
+    float: right;
+    font-size: 0;
+    letter-spacing: -.31rem;
+}
+.account-anonymous{
+    height: 296px;
+    min-height:200px;
+    max-width: 300px;
+    padding: 30px 10px 10px;
+    overflow: hidden;
+    background: transparent;
+}
+.account-body{
+    position: relative;
+    margin: auto;
+}
+.account-body,.account-body h2{
+    border-style: border-box;
+}
+.account-anonymous .account-body-tabs{
+    margin-bottom: 10px;
+}
+.account-body-tabs{
+    color:#9b9b9b;
+    font-size: 0;
+}
+.account-anonymous .account-body-tabs ul{
+    border-bottom: 1px solid #ececec;
+}
+.account-anonymous .account-body-tabs ul li.on{
+    border-bottom: 1px solid #494949;
+}
+.account-anonymous .account-body-tabs ul li{
+    font-size: 13px;
+}
+.account-body-tabs ul li.on{
+    color:#333;
+    font-weight: 600;
+}
+.account-body-tabs ul li{
+    display: inline-block;
+    width: 50%;
+    line-height: 2;
+    text-align: center;
+    cursor: pointer;
+}
+.account-body-tabs ul li.account-tab-scan{
+    color:#333;
+    font-weight: 600;
+    text-align: left;
+}
+.account-body-tabs .account-tab-switch{
+    width: 100%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    overflow: visible;
+}
+
 
