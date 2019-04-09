@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var lhr = null
+
+        // XMLHttpRequest是internet Explorer自带的引入的方法， 所有浏览器自带 能让浏览器发送接收http请求
+        if (window.XMLHttpRequest) {
+            lhr =new XMLHttpRequest()
+        } else {
+            lhr = new ActiveXObject("Microsoft.XMLHTTP")
+        }
+        // 准备工作
+        // true异步 false同步
+        lhr.open('get','/mock.json',true)//方式 地址 同异步
+        lhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+        lhr.send()
+        //console.log(lhr.responseText)
+        //responseText四个步骤1:执行send方法 2:成功接收请求 3:send方法完成（responseText） 4:拿到返回的数据解析完成之后  
+        //status:200: "OK"  404: 未找到页面
+        // 4 执行到第四步 200:该次请求成功
+        // console.log(lhr.readyState,lhr.status)
+        lhr.onreadystatechange=function(){
+            // 原生js的回调函数
+            if(lhr.readyState==4 && lhr.status==200){
+                console.log(lhr.responseText)
+            }
+        }
+        // 先打印该行（因为该次请求为异步，请求花费的时间比直接简单的打印语句久
+        // js的线程不停留等待，继续往下执行，而请求也同时执行）
+        console.log(1212)
+    </script>
+</body>
+
+</html>
