@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .ao{
+            width: 0;
+        }
+        .ao::before{
+            /* 伪元素的换行规则：英文数字不换行，中文换行 */
+            content:'love 你们 love';
+            outline: 2px solid yellow;
+            color:#fff;
+        }
+        .tu{
+            margin-top: 20px;
+            width: 0;
+        }
+        .tu::before{
+            content:'我 love 你';
+            outline: 2px solid orangered;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="ao"></div>
+    <div class="tu"></div>
+</body>
+</html>
